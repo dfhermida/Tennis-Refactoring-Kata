@@ -47,9 +47,7 @@ class TennisGame1:
             return self.player2.name
 
     def tie_score(self):
-        return {LOVE: "Love-All", FIFTEEN: "Fifteen-All", THIRTY: "Thirty-All",}.get(
-            self.player1.points, "Deuce"
-        )
+        return self.player1.score() + "-All" if self.player1.points < FORTY else "Deuce"
 
     def is_advantage_or_win(self):
         return self.player1.points > FORTY or self.player2.points > FORTY
