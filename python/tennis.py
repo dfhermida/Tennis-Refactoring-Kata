@@ -38,17 +38,17 @@ class TennisGame1:
                 else "Deuce"
             )
         if self.is_advantage():
-            return "Advantage " + self.whos_winning()
+            return "Advantage " + self.whos_winning().name
         if self.is_win():
-            return "Win for " + self.whos_winning()
+            return "Win for " + self.whos_winning().name
         return self.player1.score() + "-" + self.player2.score()
 
     def whos_winning(self):
         difference = self.player1.points - self.player2.points
         if difference > 0:
-            return self.player1.name
+            return self.player1
         else:
-            return self.player2.name
+            return self.player2
 
     def is_advantage_or_win(self):
         return self.player1.points > FORTY or self.player2.points > FORTY
