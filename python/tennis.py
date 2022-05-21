@@ -41,13 +41,13 @@ class TennisGame1:
             else:
                 result += "-"
                 tempScore = self.player2.points
-            result += {
-                LOVE: "Love",
-                FIFTEEN: "Fifteen",
-                THIRTY: "Thirty",
-                FORTY: "Forty",
-            }[tempScore]
+            result += self.simple_score(tempScore)
         return result
+
+    def simple_score(self, points):
+        return {LOVE: "Love", FIFTEEN: "Fifteen", THIRTY: "Thirty", FORTY: "Forty",}[
+            points
+        ]
 
     def advantage_or_win_score(self):
         minusResult = self.player1.points - self.player2.points
