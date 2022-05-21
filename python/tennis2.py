@@ -25,7 +25,7 @@ class TennisGame2:
 
         player1_res = ""
         player2_res = ""
-        if self.player1_points > LOVE and self.player2_points == LOVE:
+        if self.only_player1_has_points():
             if self.player1_points == FIFTEEN:
                 player1_res = "Fifteen"
             if self.player1_points == THIRTY:
@@ -86,6 +86,9 @@ class TennisGame2:
         ):
             result = "Win for " + self.player2_name
         return result
+
+    def only_player1_has_points(self):
+        return self.player1_points > LOVE and self.player2_points == LOVE
 
     def is_tie_in_advantage(self):
         return self.player1_points == self.player2_points and self.player1_points > THIRTY
