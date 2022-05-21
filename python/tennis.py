@@ -33,13 +33,11 @@ class TennisGame1:
         return self.regular_score()
 
     def regular_score(self):
-        result = ""
-
-        result += self.simple_score(self.player1.points)
-        result += "-"
-        result += self.simple_score(self.player2.points)
-
-        return result
+        return (
+            self.simple_score(self.player1.points)
+            + "-"
+            + self.simple_score(self.player2.points)
+        )
 
     def simple_score(self, points):
         return {LOVE: "Love", FIFTEEN: "Fifteen", THIRTY: "Thirty", FORTY: "Forty",}[
