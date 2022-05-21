@@ -21,7 +21,7 @@ class TennisGame1:
             result = {0: "Love-All", 1: "Fifteen-All", 2: "Thirty-All",}.get(
                 self.p1points, "Deuce"
             )
-        elif self.p1points >= 4 or self.p2points >= 4:
+        elif self.is_advantage_or_win():
             minusResult = self.p1points - self.p2points
             if minusResult == 1:
                 result = "Advantage " + self.player1Name
@@ -40,6 +40,9 @@ class TennisGame1:
                     tempScore = self.p2points
                 result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
         return result
+
+    def is_advantage_or_win(self):
+        return self.p1points >= 4 or self.p2points >= 4
 
     def is_tie(self):
         return self.p1points == self.p2points
