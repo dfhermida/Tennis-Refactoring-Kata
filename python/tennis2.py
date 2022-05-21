@@ -47,7 +47,7 @@ class TennisGame2:
             player1_res = "Love"
             result = player1_res + "-" + player2_res
 
-        if self.player1_points > self.player2_points and self.player1_points <= FORTY:
+        if self.is_player1_winning_in_regular():
             if self.player1_points == THIRTY:
                 player1_res = "Thirty"
             if self.player1_points == FORTY:
@@ -57,7 +57,7 @@ class TennisGame2:
             if self.player2_points == THIRTY:
                 player2_res = "Thirty"
             result = player1_res + "-" + player2_res
-        if self.player2_points > self.player1_points and self.player2_points <= FORTY:
+        if self.is_player2_winning_in_regular():
             if self.player2_points == THIRTY:
                 player2_res = "Thirty"
             if self.player2_points == FORTY:
@@ -87,6 +87,12 @@ class TennisGame2:
         ):
             result = "Win for " + self.player2_name
         return result
+
+    def is_player2_winning_in_regular(self):
+        return self.player2_points > self.player1_points and self.player2_points <= FORTY
+
+    def is_player1_winning_in_regular(self):
+        return self.player1_points > self.player2_points and self.player1_points <= FORTY
 
     def only_player2_has_points(self):
         return self.player2_points > LOVE and self.player1_points == LOVE
