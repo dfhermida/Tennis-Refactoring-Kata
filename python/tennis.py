@@ -16,12 +16,10 @@ class TennisGame1:
 
     def score(self):
         if self.is_tie():
-            result = self.tie_score()
+            return self.tie_score()
         elif self.is_advantage_or_win():
-            result = self.advantage_or_win_score()
-        else:
-            result = self.regular_score()
-        return result
+            return self.advantage_or_win_score()
+        return self.regular_score()
 
     def regular_score(self):
         result = ""
