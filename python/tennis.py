@@ -45,16 +45,28 @@ class TennisGame1:
         ]
 
     def advantage_or_win_score(self):
-        minusResult = self.player1.points - self.player2.points
-        if minusResult == 1:
-            result = "Advantage " + self.player1.name
-        elif minusResult == -1:
-            result = "Advantage " + self.player2.name
-        elif minusResult >= 2:
-            result = "Win for " + self.player1.name
+        if self.is_advantage():
+            return self.advantage_score()
+
+        return self.win_score()
+
+    def is_advantage(self):
+        difference = self.player1.points - self.player2.points
+        return difference < 2 and difference > -2
+
+    def advantage_score(self):
+        difference = self.player1.points - self.player2.points
+        if difference == 1:
+            return "Advantage " + self.player1.name
         else:
-            result = "Win for " + self.player2.name
-        return result
+            return "Advantage " + self.player2.name
+
+    def win_score(self):
+        difference = self.player1.points - self.player2.points
+        if difference >= 2:
+            return "Win for " + self.player1.name
+        else:
+            return "Win for " + self.player2.name
 
     def tie_score(self):
         return {LOVE: "Love-All", FIFTEEN: "Fifteen-All", THIRTY: "Thirty-All",}.get(
