@@ -19,30 +19,35 @@ class TennisGame3:
 
     def score(self):
         if self.is_regular_game():
-            p = ["Love", "Fifteen", "Thirty", "Forty"]
-            s = p[self.player1_points]
+            simple_score = ["Love", "Fifteen", "Thirty", "Forty"]
+            result = simple_score[self.player1_points]
             return (
-                s + "-All"
-                if (self.player1_points == self.player2_points)
-                else s + "-" + p[self.player2_points]
+                result + "-All"
+                if self.is_tie()
+                else result + "-" + simple_score[self.player2_points]
             )
         else:
             if self.player1_points == self.player2_points:
                 return "Deuce"
-            s = (
+            result = (
                 self.player1_name
                 if self.player1_points > self.player2_points
                 else self.player2_name
             )
             return (
-                "Advantage " + s
+                "Advantage " + result
                 if (
                     (self.player1_points - self.player2_points)
                     * (self.player1_points - self.player2_points)
                     == 1
                 )
-                else "Win for " + s
+                else "Win for " + result
             )
 
+    def is_tie(self):
+        return self.player1_points == self.player2_points
+
     def is_regular_game(self):
-        return ((self.player1_points <= FORTY and self.player2_points <= FORTY) and (self.player1_points + self.player2_points < 6))
+        return (self.player1_points <= FORTY and self.player2_points <= FORTY) and (
+            self.player1_points + self.player2_points < 6
+        )
