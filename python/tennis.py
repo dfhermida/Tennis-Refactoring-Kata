@@ -13,6 +13,11 @@ class Player:
     def won_point(self):
         self.points += 1
 
+    def score(self):
+        return {LOVE: "Love", FIFTEEN: "Fifteen", THIRTY: "Thirty", FORTY: "Forty",}[
+            self.points
+        ]
+
 
 class TennisGame1:
     def __init__(self, player1_name, player2_name):
@@ -36,15 +41,10 @@ class TennisGame1:
 
     def regular_score(self):
         return (
-            self.simple_score(self.player1.points)
+            self.player1.score()
             + "-"
-            + self.simple_score(self.player2.points)
+            + self.player2.score()
         )
-
-    def simple_score(self, points):
-        return {LOVE: "Love", FIFTEEN: "Fifteen", THIRTY: "Thirty", FORTY: "Forty",}[
-            points
-        ]
 
     def whos_winning(self):
         difference = self.player1.points - self.player2.points
