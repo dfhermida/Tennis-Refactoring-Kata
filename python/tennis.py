@@ -37,14 +37,7 @@ class TennisGame1:
             return "Advantage " + self.whos_winning()
         if self.is_win():
             return "Win for " + self.whos_winning()
-        return self.regular_score()
-
-    def regular_score(self):
-        return (
-            self.player1.score()
-            + "-"
-            + self.player2.score()
-        )
+        return self.player1.score() + "-" + self.player2.score()
 
     def whos_winning(self):
         difference = self.player1.points - self.player2.points
