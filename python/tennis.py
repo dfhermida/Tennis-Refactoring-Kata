@@ -20,15 +20,7 @@ class TennisGame1:
         if self.is_tie():
             result = self.tie_score()
         elif self.is_advantage_or_win():
-            minusResult = self.p1points - self.p2points
-            if minusResult == 1:
-                result = "Advantage " + self.player1Name
-            elif minusResult == -1:
-                result = "Advantage " + self.player2Name
-            elif minusResult >= 2:
-                result = "Win for " + self.player1Name
-            else:
-                result = "Win for " + self.player2Name
+            result = self.advantage_or_win_score()
         else:
             for i in range(1, 3):
                 if i == 1:
@@ -37,6 +29,18 @@ class TennisGame1:
                     result += "-"
                     tempScore = self.p2points
                 result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
+        return result
+
+    def advantage_or_win_score(self):
+        minusResult = self.p1points - self.p2points
+        if minusResult == 1:
+            result = "Advantage " + self.player1Name
+        elif minusResult == -1:
+            result = "Advantage " + self.player2Name
+        elif minusResult >= 2:
+            result = "Win for " + self.player1Name
+        else:
+            result = "Win for " + self.player2Name
         return result
 
     def tie_score(self):
