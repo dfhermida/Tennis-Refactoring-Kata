@@ -35,13 +35,14 @@ class TennisGame1:
     def regular_score(self):
         result = ""
         tempScore = 0
-        for i in range(1, 3):
-            if i == 1:
-                tempScore = self.player1.points
-            else:
-                result += "-"
-                tempScore = self.player2.points
-            result += self.simple_score(tempScore)
+
+        tempScore = self.player1.points
+        result += self.simple_score(tempScore)
+
+        result += "-"
+        tempScore = self.player2.points
+        result += self.simple_score(tempScore)
+
         return result
 
     def simple_score(self, points):
@@ -62,11 +63,9 @@ class TennisGame1:
         return result
 
     def tie_score(self):
-        return {
-            LOVE: "Love-All",
-            FIFTEEN: "Fifteen-All",
-            THIRTY: "Thirty-All",
-        }.get(self.player1.points, "Deuce")
+        return {LOVE: "Love-All", FIFTEEN: "Fifteen-All", THIRTY: "Thirty-All",}.get(
+            self.player1.points, "Deuce"
+        )
 
     def is_advantage_or_win(self):
         return self.player1.points > FORTY or self.player2.points > FORTY
