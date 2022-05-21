@@ -3,16 +3,16 @@
 
 class TennisGame1:
     def __init__(self, player1_name, player2_name):
-        self.player1Name = player1_name
-        self.player2Name = player2_name
-        self.p1points = 0
-        self.p2points = 0
+        self.player1_name = player1_name
+        self.player2_name = player2_name
+        self.player1_points = 0
+        self.player2_points = 0
 
     def won_point(self, player_name):
-        if player_name == self.player1Name:
-            self.p1points += 1
+        if player_name == self.player1_name:
+            self.player1_points += 1
         else:
-            self.p2points += 1
+            self.player2_points += 1
 
     def score(self):
         if self.is_tie():
@@ -26,35 +26,35 @@ class TennisGame1:
         tempScore = 0
         for i in range(1, 3):
             if i == 1:
-                tempScore = self.p1points
+                tempScore = self.player1_points
             else:
                 result += "-"
-                tempScore = self.p2points
+                tempScore = self.player2_points
             result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
         return result
 
     def advantage_or_win_score(self):
-        minusResult = self.p1points - self.p2points
+        minusResult = self.player1_points - self.player2_points
         if minusResult == 1:
-            result = "Advantage " + self.player1Name
+            result = "Advantage " + self.player1_name
         elif minusResult == -1:
-            result = "Advantage " + self.player2Name
+            result = "Advantage " + self.player2_name
         elif minusResult >= 2:
-            result = "Win for " + self.player1Name
+            result = "Win for " + self.player1_name
         else:
-            result = "Win for " + self.player2Name
+            result = "Win for " + self.player2_name
         return result
 
     def tie_score(self):
         return {0: "Love-All", 1: "Fifteen-All", 2: "Thirty-All",}.get(
-            self.p1points, "Deuce"
+            self.player1_points, "Deuce"
         )
 
     def is_advantage_or_win(self):
-        return self.p1points >= 4 or self.p2points >= 4
+        return self.player1_points >= 4 or self.player2_points >= 4
 
     def is_tie(self):
-        return self.p1points == self.p2points
+        return self.player1_points == self.player2_points
 
 
 class TennisGame2:
