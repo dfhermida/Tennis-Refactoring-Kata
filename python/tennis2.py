@@ -83,14 +83,12 @@ class TennisGame2:
     def has_player2_won_game(self):
         return (
             self.player2_points > FORTY
-            and self.player1_points >= LOVE
             and (self.player2_points - self.player1_points) >= 2
         )
 
     def has_player1_won_game(self):
         return (
             self.player1_points > FORTY
-            and self.player2_points >= LOVE
             and (self.player1_points - self.player2_points) >= 2
         )
 
