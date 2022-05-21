@@ -27,45 +27,23 @@ class TennisGame2:
         player1_res = ""
         player2_res = ""
         if self.only_player1_has_points():
-            if self.player1_points == FIFTEEN:
-                player1_res = "Fifteen"
-            if self.player1_points == THIRTY:
-                player1_res = "Thirty"
-            if self.player1_points == FORTY:
-                player1_res = "Forty"
+            player1_res = self.player1_simple_score()
 
             player2_res = "Love"
             result = player1_res + "-" + player2_res
         if self.only_player2_has_points():
-            if self.player2_points == FIFTEEN:
-                player2_res = "Fifteen"
-            if self.player2_points == THIRTY:
-                player2_res = "Thirty"
-            if self.player2_points == FORTY:
-                player2_res = "Forty"
+            player2_res = self.player2_simple_score()
 
             player1_res = "Love"
             result = player1_res + "-" + player2_res
 
         if self.is_player1_winning_in_regular():
-            if self.player1_points == THIRTY:
-                player1_res = "Thirty"
-            if self.player1_points == FORTY:
-                player1_res = "Forty"
-            if self.player2_points == FIFTEEN:
-                player2_res = "Fifteen"
-            if self.player2_points == THIRTY:
-                player2_res = "Thirty"
+            player1_res = self.player1_simple_score()
+            player2_res = self.player2_simple_score()
             result = player1_res + "-" + player2_res
         if self.is_player2_winning_in_regular():
-            if self.player2_points == THIRTY:
-                player2_res = "Thirty"
-            if self.player2_points == FORTY:
-                player2_res = "Forty"
-            if self.player1_points == FIFTEEN:
-                player1_res = "Fifteen"
-            if self.player1_points == THIRTY:
-                player1_res = "Thirty"
+            player1_res = self.player1_simple_score()
+            player2_res = self.player2_simple_score()
             result = player1_res + "-" + player2_res
 
         if self.is_player1_winning_in_advantage():
@@ -79,6 +57,30 @@ class TennisGame2:
         if self.has_player2_won_game():
             result = "Win for " + self.player2_name
         return result
+
+    def player2_simple_score(self):
+        player2_res = ""
+        if self.player2_points == LOVE:
+            player2_res = "Love"
+        if self.player2_points == FIFTEEN:
+            player2_res = "Fifteen"
+        if self.player2_points == THIRTY:
+            player2_res = "Thirty"
+        if self.player2_points == FORTY:
+            player2_res = "Forty"
+        return player2_res
+
+    def player1_simple_score(self):
+        player1_res = ""
+        if self.player1_points == LOVE:
+            player1_res = "Love"
+        if self.player1_points == FIFTEEN:
+            player1_res = "Fifteen"
+        if self.player1_points == THIRTY:
+            player1_res = "Thirty"
+        if self.player1_points == FORTY:
+            player1_res = "Forty"
+        return player1_res
 
     def has_player2_won_game(self):
         return (
