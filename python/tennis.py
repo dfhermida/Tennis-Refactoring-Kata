@@ -15,20 +15,24 @@ class TennisGame1:
             self.p2points += 1
 
     def score(self):
-        result = ""
-        tempScore = 0
         if self.is_tie():
             result = self.tie_score()
         elif self.is_advantage_or_win():
             result = self.advantage_or_win_score()
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    tempScore = self.p1points
-                else:
-                    result += "-"
-                    tempScore = self.p2points
-                result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
+            result = self.regular_score()
+        return result
+
+    def regular_score(self):
+        result = ""
+        tempScore = 0
+        for i in range(1, 3):
+            if i == 1:
+                tempScore = self.p1points
+            else:
+                result += "-"
+                tempScore = self.p2points
+            result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
         return result
 
     def advantage_or_win_score(self):
