@@ -20,7 +20,7 @@ class TennisGame2:
         result = ""
         if self.is_tie_in_regular():
             result = self.tie_in_regular_score()
-        if self.player1_points == self.player2_points and self.player1_points > THIRTY:
+        if self.is_tie_in_advantage():
             result = "Deuce"
 
         player1_res = ""
@@ -86,6 +86,9 @@ class TennisGame2:
         ):
             result = "Win for " + self.player2_name
         return result
+
+    def is_tie_in_advantage(self):
+        return self.player1_points == self.player2_points and self.player1_points > THIRTY
 
     def tie_in_regular_score(self):
         if self.player1_points == LOVE:
