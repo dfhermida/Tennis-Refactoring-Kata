@@ -51,5 +51,4 @@ class TennisGame3:
 
     def is_regular_game(self):
         return (self.player1_points <= FORTY and self.player2_points <= FORTY) and (
-            self.player1_points + self.player2_points < 6
-        )
+            self.player1_points != FORTY or self.player2_points != FORTY)
