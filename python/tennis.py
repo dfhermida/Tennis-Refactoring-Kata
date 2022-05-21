@@ -6,6 +6,8 @@ class Player:
         self.name = name
         self.points = 0
 
+    def won_point(self):
+        self.points += 1
 
 class TennisGame1:
     def __init__(self, player1_name, player2_name):
@@ -14,9 +16,9 @@ class TennisGame1:
 
     def won_point(self, player_name):
         if player_name == self.player1.name:
-            self.player1.points += 1
+            self.player1.won_point()
         else:
-            self.player2.points += 1
+            self.player2.won_point()
 
     def score(self):
         if self.is_tie():
