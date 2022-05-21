@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+LOVE = 0
+FIFTEEN = 1
+THIRTY = 2
+FORTY = 3
 
 
 class Player:
@@ -8,6 +12,7 @@ class Player:
 
     def won_point(self):
         self.points += 1
+
 
 class TennisGame1:
     def __init__(self, player1_name, player2_name):
@@ -36,7 +41,12 @@ class TennisGame1:
             else:
                 result += "-"
                 tempScore = self.player2.points
-            result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
+            result += {
+                LOVE: "Love",
+                FIFTEEN: "Fifteen",
+                THIRTY: "Thirty",
+                FORTY: "Forty",
+            }[tempScore]
         return result
 
     def advantage_or_win_score(self):
@@ -52,12 +62,14 @@ class TennisGame1:
         return result
 
     def tie_score(self):
-        return {0: "Love-All", 1: "Fifteen-All", 2: "Thirty-All",}.get(
-            self.player1.points, "Deuce"
-        )
+        return {
+            LOVE: "Love-All",
+            FIFTEEN: "Fifteen-All",
+            THIRTY: "Thirty-All",
+        }.get(self.player1.points, "Deuce")
 
     def is_advantage_or_win(self):
-        return self.player1.points >= 4 or self.player2.points >= 4
+        return self.player1.points > FORTY or self.player2.points > FORTY
 
     def is_tie(self):
         return self.player1.points == self.player2.points
