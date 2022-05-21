@@ -29,7 +29,9 @@ class TennisGame1:
         if self.is_tie():
             return self.tie_score()
         elif self.is_advantage_or_win():
-            return self.advantage_or_win_score()
+            if self.is_advantage():
+                return self.advantage_score()
+            return self.win_score()
         return self.regular_score()
 
     def regular_score(self):
@@ -43,12 +45,6 @@ class TennisGame1:
         return {LOVE: "Love", FIFTEEN: "Fifteen", THIRTY: "Thirty", FORTY: "Forty",}[
             points
         ]
-
-    def advantage_or_win_score(self):
-        if self.is_advantage():
-            return self.advantage_score()
-
-        return self.win_score()
 
     def is_advantage(self):
         difference = self.player1.points - self.player2.points
