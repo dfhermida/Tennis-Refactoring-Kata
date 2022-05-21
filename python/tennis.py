@@ -50,16 +50,19 @@ class TennisGame1:
         else:
             return self.player2
 
-    def is_advantage_or_win(self):
-        return self.player1.points > FORTY or self.player2.points > FORTY
-
     def is_advantage(self):
+        if self.player1.points <= FORTY and self.player2.points <= FORTY:
+            return False
+
         difference = self.player1.points - self.player2.points
-        return difference < 2 and difference > -2 and self.is_advantage_or_win()
+        return difference < 2 and difference > -2
 
     def is_win(self):
+        if self.player1.points <= FORTY and self.player2.points <= FORTY:
+            return False
+
         difference = self.player1.points - self.player2.points
-        return (difference >= 2 or difference <= -2) and self.is_advantage_or_win()
+        return (difference >= 2 or difference <= -2)
 
     def is_tie(self):
         return self.player1.points == self.player2.points
