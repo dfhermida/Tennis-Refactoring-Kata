@@ -37,11 +37,7 @@ class TennisGame2:
             player1_res = "Love"
             result = player1_res + "-" + player2_res
 
-        if self.is_player1_winning_in_regular():
-            player1_res = self.player1_simple_score()
-            player2_res = self.player2_simple_score()
-            result = player1_res + "-" + player2_res
-        if self.is_player2_winning_in_regular():
+        if self.is_player1_winning_in_regular() or self.is_player2_winning_in_regular():
             player1_res = self.player1_simple_score()
             player2_res = self.player2_simple_score()
             result = player1_res + "-" + player2_res
