@@ -23,26 +23,28 @@ class TennisGame3:
             result = simple_score[self.player1_points]
             if self.is_tie():
                 result = result + "-All"
-            else:        
+            else:
                 result = result + "-" + simple_score[self.player2_points]
             return result
         else:
-            if self.player1_points == self.player2_points:
+            if self.is_tie():
                 return "Deuce"
-            result = (
-                self.player1_name
-                if self.player1_points > self.player2_points
-                else self.player2_name
-            )
-            return (
-                "Advantage " + result
-                if (
-                    (self.player1_points - self.player2_points)
-                    * (self.player1_points - self.player2_points)
-                    == 1
-                )
-                else "Win for " + result
-            )
+            
+            winning = self.whos_winning_name()
+            
+            if self.not_enough_advantage_to_win():
+                return "Advantage " + winning 
+            return "Win for " + winning
+
+    def whos_winning_name(self):
+        if self.player1_points > self.player2_points:
+            return self.player1_name
+        return self.player2_name
+
+    def not_enough_advantage_to_win(self):
+        return (self.player1_points - self.player2_points) * (
+            self.player1_points - self.player2_points
+        ) == 1
 
     def is_tie(self):
         return self.player1_points == self.player2_points
