@@ -18,14 +18,8 @@ class TennisGame2:
 
     def score(self):
         result = ""
-        if self.player1_points == self.player2_points and self.player1_points < FORTY:
-            if self.player1_points == LOVE:
-                result = "Love"
-            if self.player1_points == FIFTEEN:
-                result = "Fifteen"
-            if self.player1_points == THIRTY:
-                result = "Thirty"
-            result += "-All"
+        if self.is_tie_in_regular():
+            result = self.tie_in_regular_score()
         if self.player1_points == self.player2_points and self.player1_points > THIRTY:
             result = "Deuce"
 
@@ -92,6 +86,19 @@ class TennisGame2:
         ):
             result = "Win for " + self.player2_name
         return result
+
+    def tie_in_regular_score(self):
+        if self.player1_points == LOVE:
+            result = "Love"
+        if self.player1_points == FIFTEEN:
+            result = "Fifteen"
+        if self.player1_points == THIRTY:
+            result = "Thirty"
+        result += "-All"
+        return result
+
+    def is_tie_in_regular(self):
+        return self.player1_points == self.player2_points and self.player1_points < FORTY
 
     def player1_score(self):
         self.player1_points += 1
