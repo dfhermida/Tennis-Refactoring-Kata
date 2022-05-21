@@ -34,14 +34,10 @@ class TennisGame1:
 
     def regular_score(self):
         result = ""
-        tempScore = 0
 
-        tempScore = self.player1.points
-        result += self.simple_score(tempScore)
-
+        result += self.simple_score(self.player1.points)
         result += "-"
-        tempScore = self.player2.points
-        result += self.simple_score(tempScore)
+        result += self.simple_score(self.player2.points)
 
         return result
 
