@@ -26,17 +26,6 @@ class TennisGame2:
 
         player1_res = ""
         player2_res = ""
-        if self.only_player1_has_points():
-            player1_res = self.player1_simple_score()
-
-            player2_res = "Love"
-            result = player1_res + "-" + player2_res
-        if self.only_player2_has_points():
-            player2_res = self.player2_simple_score()
-
-            player1_res = "Love"
-            result = player1_res + "-" + player2_res
-
         if self.is_player1_winning_in_regular() or self.is_player2_winning_in_regular():
             player1_res = self.player1_simple_score()
             player2_res = self.player2_simple_score()
@@ -109,12 +98,6 @@ class TennisGame2:
         return (
             self.player1_points > self.player2_points and self.player1_points <= FORTY
         )
-
-    def only_player2_has_points(self):
-        return self.player2_points > LOVE and self.player1_points == LOVE
-
-    def only_player1_has_points(self):
-        return self.player1_points > LOVE and self.player2_points == LOVE
 
     def is_tie_in_advantage(self):
         return (
