@@ -17,7 +17,7 @@ class TennisGame1:
     def score(self):
         result = ""
         tempScore = 0
-        if self.p1points == self.p2points:
+        if self.is_tie():
             result = {0: "Love-All", 1: "Fifteen-All", 2: "Thirty-All",}.get(
                 self.p1points, "Deuce"
             )
@@ -40,6 +40,9 @@ class TennisGame1:
                     tempScore = self.p2points
                 result += {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty",}[tempScore]
         return result
+
+    def is_tie(self):
+        return self.p1points == self.p2points
 
 
 class TennisGame2:
