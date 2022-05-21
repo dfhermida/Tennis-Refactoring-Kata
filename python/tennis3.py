@@ -1,3 +1,9 @@
+LOVE = 0
+FIFTEEN = 1
+THIRTY = 2
+FORTY = 3
+
+
 class TennisGame3:
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
@@ -12,9 +18,7 @@ class TennisGame3:
             self.player2_points += 1
 
     def score(self):
-        if (self.player1_points < 4 and self.player2_points < 4) and (
-            self.player1_points + self.player2_points < 6
-        ):
+        if self.is_regular_game():
             p = ["Love", "Fifteen", "Thirty", "Forty"]
             s = p[self.player1_points]
             return (
@@ -39,3 +43,6 @@ class TennisGame3:
                 )
                 else "Win for " + s
             )
+
+    def is_regular_game(self):
+        return ((self.player1_points <= FORTY and self.player2_points <= FORTY) and (self.player1_points + self.player2_points < 6))
