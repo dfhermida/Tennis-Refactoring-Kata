@@ -29,9 +29,9 @@ class TennisGame1:
         if self.is_tie():
             return self.tie_score()
         if self.is_advantage():
-            return self.advantage_score()
+            return "Advantage " + self.whos_winning()
         if self.is_win():
-            return self.win_score()
+            return "Win for " + self.whos_winning()
         return self.regular_score()
 
     def regular_score(self):
@@ -52,12 +52,6 @@ class TennisGame1:
             return self.player1.name
         else:
             return self.player2.name
-
-    def advantage_score(self):
-        return "Advantage " + self.whos_winning()
-
-    def win_score(self):
-        return "Win for " + self.whos_winning()
 
     def tie_score(self):
         return {LOVE: "Love-All", FIFTEEN: "Fifteen-All", THIRTY: "Thirty-All",}.get(
