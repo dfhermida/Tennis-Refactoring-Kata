@@ -21,11 +21,11 @@ class TennisGame3:
         if self.is_regular_game():
             simple_score = ["Love", "Fifteen", "Thirty", "Forty"]
             result = simple_score[self.player1_points]
-            return (
-                result + "-All"
-                if self.is_tie()
-                else result + "-" + simple_score[self.player2_points]
-            )
+            if self.is_tie():
+                result = result + "-All"
+            else:        
+                result = result + "-" + simple_score[self.player2_points]
+            return result
         else:
             if self.player1_points == self.player2_points:
                 return "Deuce"
