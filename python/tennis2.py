@@ -74,31 +74,45 @@ class TennisGame2:
         if self.is_player2_winning_in_advantage():
             result = "Advantage " + self.player2_name
 
-        if (
-            self.player1_points > FORTY
-            and self.player2_points >= LOVE
-            and (self.player1_points - self.player2_points) >= 2
-        ):
+        if self.has_player1_won_game():
             result = "Win for " + self.player1_name
-        if (
-            self.player2_points > FORTY
-            and self.player1_points >= LOVE
-            and (self.player2_points - self.player1_points) >= 2
-        ):
+        if self.has_player2_won_game():
             result = "Win for " + self.player2_name
         return result
 
+    def has_player2_won_game(self):
+        return (
+            self.player2_points > FORTY
+            and self.player1_points >= LOVE
+            and (self.player2_points - self.player1_points) >= 2
+        )
+
+    def has_player1_won_game(self):
+        return (
+            self.player1_points > FORTY
+            and self.player2_points >= LOVE
+            and (self.player1_points - self.player2_points) >= 2
+        )
+
     def is_player2_winning_in_advantage(self):
-        return self.player2_points > self.player1_points and self.player1_points >= FORTY
+        return (
+            self.player2_points > self.player1_points and self.player1_points >= FORTY
+        )
 
     def is_player1_winning_in_advantage(self):
-        return self.player1_points > self.player2_points and self.player2_points >= FORTY
+        return (
+            self.player1_points > self.player2_points and self.player2_points >= FORTY
+        )
 
     def is_player2_winning_in_regular(self):
-        return self.player2_points > self.player1_points and self.player2_points <= FORTY
+        return (
+            self.player2_points > self.player1_points and self.player2_points <= FORTY
+        )
 
     def is_player1_winning_in_regular(self):
-        return self.player1_points > self.player2_points and self.player1_points <= FORTY
+        return (
+            self.player1_points > self.player2_points and self.player1_points <= FORTY
+        )
 
     def only_player2_has_points(self):
         return self.player2_points > LOVE and self.player1_points == LOVE
